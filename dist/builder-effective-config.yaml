@@ -1,0 +1,36 @@
+directories:
+  output: dist
+  buildResources: assets
+appId: com.tpfstudio.app
+productName: TPF Studio
+copyright: Copyright © 2026 TPF Studio
+asarUnpack:
+  - music/**/*
+files:
+  - filter:
+      - main.js
+      - preload.js
+      - renderer/**/*
+      - assets/**/*
+      - music/**/*
+      - package.json
+win:
+  icon: assets/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: TPF Studio Setup ${version}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: TPF Studio
+  installerIcon: assets/icon.ico
+  uninstallerIcon: assets/icon.ico
+  installerHeaderIcon: assets/icon.ico
+  deleteAppDataOnUninstall: false
+electronVersion: 31.7.7

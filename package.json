@@ -1,0 +1,66 @@
+{
+  "name": "tpf-studio-electron",
+  "version": "1.0.0",
+  "description": "TPF Studio — desktop app (Electron)",
+  "main": "main.js",
+  "author": "Vladislav / TPF Studio",
+  "license": "MIT",
+  "homepage": "https://energylow.github.io/tpf-studio",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:win:no-sign": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.tpfstudio.app",
+    "productName": "TPF Studio",
+    "copyright": "Copyright © 2026 TPF Studio",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "asarUnpack": [
+      "music/**/*"
+    ],
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*",
+      "music/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "TPF Studio Setup ${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TPF Studio",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
